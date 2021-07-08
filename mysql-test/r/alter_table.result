@@ -4560,3 +4560,12 @@ no_default_newer_than_alter	create_default_newer_than_alter	alter_default_newer_
 1	1	1
 DROP TABLE t2, t1;
 SET TIMESTAMP=default;
+#
+# PXC-3628 : Server allows mysql.wsrep_* tables to be converted to MyISAM
+#
+ALTER TABLE mysql.wsrep_cluster ENGINE=myisam;
+ERROR HY000: Storage engine 'MyISAM' does not support system tables. [mysql.wsrep_cluster]
+ALTER TABLE mysql.wsrep_cluster_members ENGINE=myisam;
+ERROR HY000: Storage engine 'MyISAM' does not support system tables. [mysql.wsrep_cluster_members]
+ALTER TABLE mysql.wsrep_streaming_log ENGINE=myisam;
+ERROR HY000: Storage engine 'MyISAM' does not support system tables. [mysql.wsrep_streaming_log]
