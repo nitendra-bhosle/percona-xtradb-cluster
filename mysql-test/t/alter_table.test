@@ -3673,13 +3673,3 @@ JOIN t2;
 DROP TABLE t2, t1;
 SET TIMESTAMP=default;
 
---echo #
---echo # PXC-3628 : Server allows mysql.wsrep_* tables to be converted to MyISAM
---echo #
---error ER_UNSUPPORTED_ENGINE
-ALTER TABLE mysql.wsrep_cluster ENGINE=myisam;
---error ER_UNSUPPORTED_ENGINE
-ALTER TABLE mysql.wsrep_cluster_members ENGINE=myisam;
---error ER_UNSUPPORTED_ENGINE
-ALTER TABLE mysql.wsrep_streaming_log ENGINE=myisam;
-
