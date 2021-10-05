@@ -512,7 +512,6 @@ FOREACH(BUILD_TYPE RELEASE RELWITHDEBINFO MINSIZEREL)
 ENDFOREACH()
 
 # Add safemutex for debug configurations
-<<<<<<< HEAD
 # PS-enabled SAFE_MUTEX (starting from 5.7.22) but PXC can't enable it.
 # PXC in 5.7 introduced PFS for some of the instruments that in galera
 # library but not for all since tracking of them is big overhead
@@ -525,21 +524,6 @@ IF(NOT WITH_INNODB_MEMCACHED)
         "${CMAKE_${LANG}_FLAGS_DEBUG} -DSAFE_MUTEX")
     ENDFOREACH()
 ENDIF()
-||||||| merged common ancestors
-FOREACH(LANG C CXX)
-  SET(CMAKE_${LANG}_FLAGS_DEBUG
-    "${CMAKE_${LANG}_FLAGS_DEBUG} -DSAFE_MUTEX")
-ENDFOREACH()
-=======
-FOREACH(LANG C CXX)
-  STRING_PREPEND(CMAKE_${LANG}_FLAGS_DEBUG "-DSAFE_MUTEX ")
-ENDFOREACH()
-
-# Enable debug sync for debug builds.
-FOREACH(LANG C CXX)
-  STRING_PREPEND(CMAKE_${LANG}_FLAGS_DEBUG "-DENABLED_DEBUG_SYNC ")
-ENDFOREACH()
->>>>>>> 71c56728ba2
 
 
 # Set commonly used variables

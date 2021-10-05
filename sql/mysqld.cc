@@ -5407,7 +5407,6 @@ a file name for --log-bin-index option", opt_binlog_index_name);
     mysql_mutex_unlock(log_lock);
   }
 
-<<<<<<< HEAD
 #ifdef HAVE_REPLICATION
 
 #ifdef WITH_WSREP
@@ -5439,26 +5438,6 @@ a file name for --log-bin-index option", opt_binlog_index_name);
 
 #endif
 
-||||||| merged common ancestors
-#ifdef HAVE_REPLICATION
-  if (opt_bin_log && expire_logs_days)
-  {
-    time_t purge_time= server_start_time - expire_logs_days*24*60*60;
-    if (purge_time >= 0)
-      mysql_bin_log.purge_logs_before_date(purge_time, true);
-  }
-  if (opt_bin_log && max_binlog_files)
-  {
-    mysql_bin_log.purge_logs_maximum_number(max_binlog_files);
-  }
-  if (opt_bin_log && binlog_space_limit)
-  {
-    mysql_bin_log.purge_logs_by_size(true);
-  }
-#endif
-
-=======
->>>>>>> 71c56728ba2
   if (opt_myisam_log)
     (void) mi_log(1);
 

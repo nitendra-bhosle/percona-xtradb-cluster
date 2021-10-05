@@ -1104,15 +1104,7 @@ extern "C"
 THD* thd_tx_arbitrate(THD *requestor, THD* holder)
 {
  /* Should be different sessions. */
-<<<<<<< HEAD
- DBUG_ASSERT(holder != requestor);
-||||||| merged common ancestors
- DBUG_ASSERT(holder != requestor);
-
-=======
-  assert(holder != requestor);
-
->>>>>>> 71c56728ba2
+ assert(holder != requestor);
  return(thd_tx_priority(requestor) == thd_tx_priority(holder)
 	? requestor
 	: ((thd_tx_priority(requestor)
@@ -2070,15 +2062,9 @@ void THD::update_stats(bool ran_command)
   if (ran_command)
   {
     // The replication thread has the COM_CONNECT command.
-<<<<<<< HEAD
 #ifndef WITH_WSREP
-    DBUG_ASSERT(get_command() != COM_SLEEP);
-#endif /* !WITH_WSREP */
-||||||| merged common ancestors
-    DBUG_ASSERT(get_command() != COM_SLEEP);
-=======
     assert(get_command() != COM_SLEEP);
->>>>>>> 71c56728ba2
+#endif /* !WITH_WSREP */
     if ((get_command() == COM_QUERY || get_command() == COM_CONNECT) &&
         (lex->sql_command >= 0 && lex->sql_command < SQLCOM_END)) {
       // A SQL query.
@@ -2145,20 +2131,14 @@ void THD::init_for_queries(Relay_log_info *rli)
     }
     rli_slave= rli;
 
-<<<<<<< HEAD
 #ifdef WITH_WSREP
     DBUG_ASSERT(rli_slave->info_thd == this &&
                 (slave_thread ||
                  wsrep_applier ||
                  rli_slave->info_thd->wsrep_conflict_state == REPLAYING));
 #else
-    DBUG_ASSERT(rli_slave->info_thd == this && slave_thread);
-#endif /* WITH_WSREP */
-||||||| merged common ancestors
-    DBUG_ASSERT(rli_slave->info_thd == this && slave_thread);
-=======
     assert(rli_slave->info_thd == this && slave_thread);
->>>>>>> 71c56728ba2
+#endif /* WITH_WSREP */
   }
 #endif
 }
