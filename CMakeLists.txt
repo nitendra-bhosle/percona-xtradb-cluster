@@ -525,6 +525,12 @@ IF(NOT WITH_INNODB_MEMCACHED)
     ENDFOREACH()
 ENDIF()
 
+# Enable debug sync for debug builds.
+FOREACH(LANG C CXX)
+  STRING_PREPEND(CMAKE_${LANG}_FLAGS_DEBUG "-DENABLED_DEBUG_SYNC ")
+ENDFOREACH()
+
+
 
 # Set commonly used variables
 IF(WIN32)
